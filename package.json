@@ -1,0 +1,47 @@
+{
+  "name": "site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "ngrok": "ngrok http 3000"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/pro-duotone-svg-icons": "^6.2.0",
+    "@fortawesome/pro-light-svg-icons": "^6.2.0",
+    "@fortawesome/pro-regular-svg-icons": "^6.2.0",
+    "@fortawesome/pro-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@headlessui/react": "^1.7.3",
+    "@heroicons/react": "^2.0.12",
+    "@tailwindcss/forms": "^0.5.3",
+    "@vercel/analytics": "^0.1.8",
+    "axios": "^1.2.6",
+    "chart.js": "^3.9.1",
+    "classnames": "^2.3.2",
+    "fuse.js": "^6.6.2",
+    "mongodb": "^4.12.1",
+    "multi-range-slider-react": "^2.0.2",
+    "next": "^12.3.2-canary.32",
+    "ngrok": "^4.3.3",
+    "react": "18.2.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-countup": "^6.3.2",
+    "react-dom": "18.2.0",
+    "react-slideshow-image": "^4.0.5",
+    "react-tooltip": "^5.9.0",
+    "tw-elements": "^1.0.0-beta1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "eslint": "8.26.0",
+    "eslint-config-next": "12.3.1",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1"
+  }
+}
