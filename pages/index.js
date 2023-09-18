@@ -47,8 +47,8 @@ const stats = [
   { id: 2, name: 'Average Daily Uptime', value: '11.3 Hours' },
   { id: 3, name: 'Average Air Quality', value: '23 PPM' },
   { id: 6, name: 'Average Humidity', value: '40%' },
-  { id: 4, name: 'Last Maintenance', value: '08/12/23' },
-  { id: 5, name: 'Estimated Next Maintenance', value: '03/05/24' },
+  { id: 4, name: 'Last Maintenance', value: '03/12/23' },
+  { id: 5, name: 'Estimated Next Maintenance', value: '10/03/23' },
 ]
 
 const properties = [
@@ -228,9 +228,15 @@ function createDates(num) {
 
 function generateRandomArray(length) {
   const randomArray = [];
+  var date = new Date();
   for (let i = 1; i <= length; i++) {
     const randomNumber = Math.random();
-    randomArray.push(2 + (i - randomNumber)/10);
+    let dataPoint = 2 + (i - randomNumber)/10;
+    if (date.getDay() == 0 || date.getDay() == 6) {
+      dataPoint -= .2;
+    }
+    randomArray.push(dataPoint);
+    date.setDate(date.getDate() + 1);
   }
   return randomArray;
 }
@@ -628,7 +634,7 @@ export default function Example() {
           <main className="lg:pr-96" hidden={page != "Property"}>
             <div className="sm:flex sm:items-center mx-8 my-6">
               <div className="sm:flex-auto">
-                <h1 className="text-xl font-semibold leading-6 text-gray-900"> <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Properties")}>All Properties</a> {">"} 2802 Washington Ln.</h1>
+                <h1 className="text-xl font-semibold leading-6 text-gray-900"> <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Properties")}>All Properties</a> {">"} 1523 Adams St.</h1>
               </div>
               <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <button
@@ -708,15 +714,28 @@ export default function Example() {
           <main className="lg:pr-96" hidden={page != "Unit"}>
             <div className="sm:flex sm:items-center mx-8 my-6">
               <div className="sm:flex-auto">
-                <h1 className="text-xl font-semibold leading-6 text-gray-900"> <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Properties")}>All Properties</a> {">"} <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Property")}>2802 Washington Ln.</a> {">"} HVAC B6-D</h1>
+                <h1 className="text-xl font-semibold leading-6 text-gray-900"> <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Properties")}>All Properties</a> {">"} <a href="#" className="text-blue-600 hover:text-blue-900" onClick={() => setPage("Property")}>1523 Adams St.</a> {">"} HVAC 4R-7</h1>
               </div>
               <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <button
                   type="button"
                   className="block rounded-md bg-gray-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                 >
+                  Create Work Order
+                </button>
+              </div>
+              <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-none">
+                <button
+                  type="button"
+                  className="block rounded-md bg-gray-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                >
                   Edit
                 </button>
+              </div>
+            </div>
+            <div className="sm:flex sm:items-center mx-8 my-6">
+              <div className="sm:flex-auto">
+                <h1 className="text-xl font-semibold leading-6 text-gray-900">Status: Failure likely within 17 day(s)</h1>
               </div>
             </div>
             <div className='mx-8 mb-6 p-4 rounded bg-gray-200'>
@@ -728,7 +747,7 @@ export default function Example() {
                     datasets: [
                       {
                         id: 1,
-                        label: 'Risk factor',
+                        label: 'Risk Factor Projection',
                         data: generateRandomArray(30),
                       },
                     ],
@@ -739,7 +758,7 @@ export default function Example() {
             <div className='mx-8 my-6'>
               <dl className="mt-8 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-3">
                 {stats.map((stat) => (
-                  <div key={stat.id} className="flex flex-col bg-gray-200 p-8">
+                  <div key={stat.id} className="flex flex-col bg-gray-200 p-6">
                     <dt className="text-sm font-semibold leading-6 text-gray-600">{stat.name}</dt>
                     <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">{stat.value}</dd>
                   </div>
